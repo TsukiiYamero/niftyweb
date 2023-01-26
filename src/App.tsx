@@ -1,14 +1,14 @@
 import './App.css'
 import { SnackbarProvider } from '@/context/snackbar/provider';
 import { CustomThemeProvider } from '@/theme/provider';
-import { Outlet } from 'react-router-dom';
+import { MainRouting } from '@/router/MainRouting';
 
 function App() {
 
   return (
     <SnackbarProvider>
       <CustomThemeProvider>
-        <Outlet />
+        <MainRouting />
       </CustomThemeProvider>
     </SnackbarProvider>
   );

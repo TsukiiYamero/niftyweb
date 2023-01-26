@@ -31,7 +31,7 @@ export const ErrorPage = () => {
                 }}
                 onClick={onClickRedirect}
             >
-                <Link href="#">Return Home</Link>
+                <Link>Return Home</Link>
             </Box>
 
             <i>Design in construction</i>

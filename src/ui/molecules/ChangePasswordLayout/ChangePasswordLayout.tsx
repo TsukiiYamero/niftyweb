@@ -1,71 +1,60 @@
-import { useFormAdvanced } from '@/customHooks/useFormAdvanced';
-import { changePasswordValidation } from '@/utils/authValidations';
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput } from '@mui/material';
-import ImgResetPassword from '@/assets/images/reset-password.png'
-import './change_password_layout.css';
-import { TextField } from '@mui/material';
-import { InputLabel } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import ImgResetPassword from '@/assets/images/reset-password.png'
+import Visibility from '@mui/icons-material/Visibility';
+import { MouseEvent, useState } from 'react';
+import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput, InputLabel } from '@mui/material';
+import { useForm } from "react-hook-form";
+import { PatternPassword } from '@/utils/authValidations';
+import { useFetchWithCallback } from '@/customHooks/useFetchWithCallback';
+import { updateProfile } from '@/services/authServices/passwordReset';
+import { useSnackbar } from '@/context/snackbar/hooks';
+import './change_password_layout.css';
 
-type SignUpForm = { email: string, password: string }
+type ChangePassword = { password: string, passwordConfirm: string }
 
 export const ChangePasswordLayout = () => {
-
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
-
     const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-
-    const { data, errors, isValid, pristine, handelSetData, resetForm } = useFormAdvanced<SignUpForm>({
-        validations: changePasswordValidation.validations,
-        initialValues: {
-            email: emailRef.current?.value ?? '',
-            password: passwordRef.current?.value ?? ''
+    const [msgError, setMsgError] = useState('');
+    const showSnackbar = useSnackbar();
+    const { callApi } = useFetchWithCallback();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            password: '',
+            passwordConfirm: ''
         }
     });
 
-    useEffect(() => {
-        const signUp = async () => {
-            if (!isValid) return;
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-            const userCredentials = {
-                email: data.email ?? '',
-                password: data.password ?? ''
-            };
-
-            let isOk = false;
-        };
-        signUp();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isValid, data]);
-
-    const onSubmit = (ev: FormEvent) => {
-        ev.preventDefault();
-
-        const email = emailRef.current?.value;
-        const password = passwordRef.current?.value;
-
-        handelSetData({
-            email, password
-        });
+    const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
     };
 
+    const onSubmit = async (form: ChangePassword) => {
+        if (form.password !== form.passwordConfirm) {
+            setMsgError('Ops... Both passwords must match');
+            return;
+        }
+        setMsgError('');
+
+        const { data, error } = await callApi<{ password: string, email?: string }>(updateProfile, { password: form.password });
+        if (error) {
+            setMsgError(error.message);
+            return;
+        }
+
+        showSnackbar('Password changed successfully', 'success');
+        console.log(data);
+    };
 
     return (
         <Box className='reset-password-container'>
-            <Box component={'form'} onSubmit={onSubmit}>
+            <Box component={'form'} onSubmit={handleSubmit(onSubmit)}>
+
                 <h1>Password Reset</h1>
 
                 <FormHelperText>Please enter a new password for your account.</FormHelperText>
-
+                <FormHelperText error>{msgError}</FormHelperText>
                 <Box>
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-confirm-password">Enter new Password</InputLabel>
@@ -73,6 +62,14 @@ export const ChangePasswordLayout = () => {
                             label="Enter new Password"
                             id="outlined-adornment-confirm-password"
                             type={showPassword ? 'text' : 'password'}
+                            {...register('password', {
+                                required: 'Please enter a new password for your account',
+                                pattern: {
+                                    value: PatternPassword,
+                                    message: 'Password must be at least 8 characters long, and must include 1 letter & 1 number.'
+                                }
+                            })}
+                            error={!!errors.password}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -86,6 +83,7 @@ export const ChangePasswordLayout = () => {
                                 </InputAdornment>
                             }
                         />
+                        <FormHelperText error> {errors.password?.message}</FormHelperText>
                     </FormControl>
 
                     <FormControl variant="outlined">
@@ -94,6 +92,14 @@ export const ChangePasswordLayout = () => {
                             label="Confirm new Password"
                             id="outlined-adornment-password"
                             type={showPassword ? 'text' : 'password'}
+                            {...register('passwordConfirm', {
+                                required: 'Please confirm the new password for your account',
+                                pattern: {
+                                    value: PatternPassword,
+                                    message: 'Password must be at least 8 characters long, and must include 1 letter & 1 number.'
+                                }
+                            })}
+                            error={!!errors.passwordConfirm}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -107,6 +113,7 @@ export const ChangePasswordLayout = () => {
                                 </InputAdornment>
                             }
                         />
+                        <FormHelperText error> {errors.passwordConfirm?.message}</FormHelperText>
                     </FormControl>
 
                     <Button type="submit" variant='contained'>Change my password</Button>

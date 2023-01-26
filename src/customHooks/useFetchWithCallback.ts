@@ -14,7 +14,7 @@ export const useFetchWithCallback = () => {
     const showSnackbar = useSnackbar();
 
     // func that make the fetch call
-    const callApi = useCallback(async (fetchFunc: fetchApi, payload?: any): Promise<SupabaseCommonResponse> => {
+    const callApi = useCallback(async <T>(fetchFunc: fetchApi, payload?: T): Promise<SupabaseCommonResponse> => {
         refAbortController.current = abortController();
 
         let result: SupabaseCommonResponse = {
@@ -23,7 +23,7 @@ export const useFetchWithCallback = () => {
         };
 
         try {
-            result = await fetchFunc(refAbortController.current, payload || null);
+            result = await fetchFunc(refAbortController.current, payload);
 
             if (result.error) {
                 showSnackbar('Ops... something went wrong.', 'error');

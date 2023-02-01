@@ -1,9 +1,9 @@
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import ImgResetPassword from '@/assets/images/reset-password.png'
+import ImgResetPassword from '@/assets/images/gif-resetpass.gif';
 import Visibility from '@mui/icons-material/Visibility';
 import { MouseEvent, useState } from 'react';
 import { Box, Button, FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput, InputLabel } from '@mui/material';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { PatternPassword } from '@/utils/authValidations';
 import { useFetchWithCallback } from '@/customHooks/useFetchWithCallback';
 import { updateProfile } from '@/services/authServices/passwordReset';
@@ -44,7 +44,6 @@ export const ChangePasswordLayout = () => {
         }
 
         showSnackbar('Password changed successfully', 'success');
-        console.log(data);
     };
 
     return (
@@ -122,7 +121,6 @@ export const ChangePasswordLayout = () => {
             </Box>
 
             <Box className='reset-password-img-container'>
-                <Box className='wallpaper-reset-password'></Box>
                 <Box>
                     <img src={ImgResetPassword} alt="img of reset password, one girl in front of a laptop" />
                 </Box>

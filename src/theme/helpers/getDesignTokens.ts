@@ -15,9 +15,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
                 success: {
                     main: '#59d2ae'
                 },
-                Warning: {
+                /* warning: {
                     main: 'invert(57%) sepia(90%) saturate(682%) hue-rotate(353deg) brightness(95%) contrast(103%)'
-                },
+                }, */
                 /* background: {
                     default: '#fdfdfd'
                 }, */
@@ -37,9 +37,9 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
                 success: {
                     main: '#59d2ae'
                 },
-                Warning: {
+                /* warning: {
                     main: 'invert(57%) sepia(90%) saturate(682%) hue-rotate(353deg) brightness(95%) contrast(103%)'
-                },
+                }, */
                 /* background: {
                     default: '#1b1b1d'
                 }, */

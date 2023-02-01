@@ -16,9 +16,10 @@ type props = {
  * and for avoid too much code in app.tsx
  */
 export const CustomThemeProvider = ({ children }: props) => {
-    const initialTheme = useGetInitialTheme();
-    const [theme, setTheme] = useState<Themes>(initialTheme);
-    useApplyTheme({ initialTheme, theme, setTheme });
+    // just light theme for now
+    // const initialTheme = useGetInitialTheme();
+    const [theme, setTheme] = useState<Themes>(Themes.light);
+    //useApplyTheme({ initialTheme, theme, setTheme });
     const themeMui = useMemo(() => createTheme(getDesignTokens(theme)), [theme]);
 
     return (<>

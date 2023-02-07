@@ -17,7 +17,7 @@ export const Imagotipo = () => {
                 fontSize: '20px',
                 color: 'var(--text-color-dark)',
                 fontWeight: 'bold',
-                fontFamily: 'sans-serif'
+                fontFamily: '-apple-system, system-ui, Roboto'
             }}>
                 NiftyTab
             </Typography>

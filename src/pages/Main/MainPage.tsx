@@ -1,6 +1,11 @@
+import { MainTemplate } from "@/templates/Main";
+import { Imagotipo } from "@/ui/atoms/Imagotipo";
 
 export const MainPage = () => {
   return (
-    <div>MainPage</div>
+    <div>
+
+      <MainTemplate />
+    </div>
   )
 };

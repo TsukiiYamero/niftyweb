@@ -161,6 +161,10 @@ body {
   color: var(--neutral-color-third);
 }
 
+.text-neutral-color-2 {
+  color: #989da5;
+}
+
 .primary-color {
   color: var(--primary-color);
 }

@@ -30,8 +30,9 @@ export const Footer = () => {
                     position: 'absolute',
                     right: '100%',
                     top: '0',
+                    left: '0',
                     rotate: '4deg',
-                    translate: '-93%'
+                    translate: '-88%'
                 }} rectStyle={{ color: 'var(--primary-color)' }}></DotsSvg>
 
                 <Box sx={{
@@ -40,7 +41,9 @@ export const Footer = () => {
                         xs: 'column',
                         sm: 'row'
                     },
+                    paddingLeft: '1rem',
                     gap: '1rem',
+                    position: 'relative',
                     justifyContent: 'space-between'
                 }}>
                     <Typography variant='subtitle2' sx={{ fontSize: '1rem', color: 'var(--white)' }}>

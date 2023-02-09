@@ -4,10 +4,11 @@ type Props = {
     SvgClassName?: string,
     width?: string,
     height?: string,
-    style?: any
+    style?: any,
+    rectStyle?: any
 }
 
-export const DotsSvg = ({ SvgClassName = '', width = '404', height = '392', style = {} }) => {
+export const DotsSvg = ({ SvgClassName = '', width = '404', height = '392', style = {}, rectStyle = {} }: Props) => {
     const id = useId();
 
     return (
@@ -15,7 +16,7 @@ export const DotsSvg = ({ SvgClassName = '', width = '404', height = '392', styl
             <svg className={SvgClassName} width={width} height={height} fill="none" viewBox="0 0 404 392" style={style}>
                 <defs>
                     <pattern id={id} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <rect x="0" y="0" width="4" height="4" style={{ color: '#e5e7eb' }} fill="currentColor"></rect>
+                        <rect x="0" y="0" width="4" height="4" style={{ color: '#e5e7eb', ...rectStyle }} fill="currentColor"></rect>
                     </pattern>
                 </defs>
                 <rect width="404" height="392" fill={`url(#${id})`}></rect>

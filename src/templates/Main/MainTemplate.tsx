@@ -1,15 +1,18 @@
+import { Footer } from "@/ui/molecules/Footer"
 import { Hero } from "@/ui/molecules/Hero"
-import { FirstSection } from "@/ui/molecules/Sections"
+import { FirstSection, SecondSection } from "@/ui/molecules/Sections"
 import { Box } from "@mui/material"
 
 export const MainTemplate = () => {
     return (
         <Box sx={{
-            padding: '2rem 0',
+            paddingTop: '2rem',
             overflowX: 'hidden'
         }}>
             <Hero />
             <FirstSection />
+            <SecondSection />
+            <Footer />
         </Box>
     )
 }

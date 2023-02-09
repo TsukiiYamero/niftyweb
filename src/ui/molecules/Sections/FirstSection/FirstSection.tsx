@@ -37,7 +37,7 @@ export const FirstSection = () => {
                 },
                 paddingBlock: {
                     xs: '0',
-                    sm: '8rem'
+                    md: '8rem'
                 },
                 margin: '0 auto',
                 'h1, h6': { fontFamily: '-apple-system, system-ui, Roboto' }

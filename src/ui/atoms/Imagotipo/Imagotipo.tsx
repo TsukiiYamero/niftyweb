@@ -1,8 +1,16 @@
 
 import { Logo } from '@/ui/atoms/Logo';
 import { Box, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export const Imagotipo = () => {
+
+    const navigateTo = useNavigate();
+
+    const navigateToHome = () => {
+        navigateTo('/')
+    }
+
     return (
         <Box sx={{
             display: 'flex',
@@ -10,8 +18,11 @@ export const Imagotipo = () => {
             gap: '8px',
             'img': {
                 width: '32px',
-            }
-        }}>
+            },
+            cursor: 'pointer'
+        }}
+            onClick={navigateToHome}
+        >
             <Logo />
             <Typography sx={{
                 fontSize: '20px',

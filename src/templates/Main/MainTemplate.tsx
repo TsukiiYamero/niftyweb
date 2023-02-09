@@ -1,4 +1,5 @@
 import { Hero } from "@/ui/molecules/Hero"
+import { FirstSection } from "@/ui/molecules/Sections"
 import { Box } from "@mui/material"
 
 export const MainTemplate = () => {
@@ -8,6 +9,7 @@ export const MainTemplate = () => {
             overflowX: 'hidden'
         }}>
             <Hero />
+            <FirstSection />
         </Box>
     )
 }

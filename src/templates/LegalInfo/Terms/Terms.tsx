@@ -1,10 +1,10 @@
 import { Footer } from '@/ui/molecules/Footer';
-import { LayoutLegalInfo, termsInfo } from '@/ui/molecules/LayoutLegalInfo';
+import { LayoutLegalInfo, termsInfoEN } from '@/ui/molecules/LayoutLegalInfo';
 import { Box } from '@mui/material';
 
 export const TermsTemplate = () => {
 
-    const { title, legalInfo } = termsInfo;
+    const { title, legalInfo } = termsInfoEN;
 
     return (
         <Box sx={{

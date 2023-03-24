@@ -49,7 +49,7 @@ export const FirstSection = () => {
 
                 <Typography variant='subtitle2' className='text-neutral-color-2'
                     sx={{ fontSize: '1.125rem', fontWeight: '100', marginTop: '1rem' }}>
-                    Easily manage and save your tabs, organize them into groups or sessions, and open them in other browsers.
+                    Easily manage and save your tabs, organize them into sessions, and open them in other browsers.
                 </Typography>
             </Box>
 
